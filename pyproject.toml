@@ -1,0 +1,39 @@
+[project]
+name = "poker"
+requires-python = ">=3.8"
+authors = [{ "name" = "Marcin Traczyk", "email" = "marcin.traczyk.88@gmail.com" }]
+dependencies = []
+dynamic = ["version", "description"]
+
+[build-system]
+requires = [
+    "py-build-cmake~=0.2.0a7",
+    "pybind11>=2.10.1,!=2.10.2,!=2.10.3,!=2.10.4,!=2.11.*",
+    "pybind11-stubgen~=0.16.2",
+]
+build-backend = "py_build_cmake.build"
+
+[tool.py-build-cmake.module]
+name = "poker"
+directory = "python"
+
+[tool.py-build-cmake.sdist]
+include = [
+    "README.md",
+    "CMakeLists.txt",
+    "src",
+]
+exclude = []
+
+[tool.py-build-cmake.cmake]
+minimum_version = "3.24"
+source_path = "."
+config = []
+args = ["-Wdev"]
+build_args = ["-j"]
+
+[tool.py-build-cmake.stubgen]
+args = ["-v"]
+
+[tool.py-build-cmake.editable]
+mode = "symlink"
